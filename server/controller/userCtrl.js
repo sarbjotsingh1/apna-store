@@ -58,7 +58,26 @@ const getSingleUser = asyncHandler(async (req, res) => {
 });
 
 //Update User
-const updateUser = asyncHandler(async (req, res) => {});
+const updateUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      id,
+      {
+        firstName: req.body?.firstName,
+        lastname: req.body?.lastName,
+        email: req.body?.email,
+        mobile: req.body?.mobile,
+      },
+      {
+        new: true,
+      }
+    );
+    res.json({ updateUser });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 //Delete User
 const deleteUser = asyncHandler(async (req, res) => {
