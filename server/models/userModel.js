@@ -45,6 +45,10 @@ var userSchema = new mongoose.Schema(
         ref: "Product",
       },
     ],
+    blocked: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
