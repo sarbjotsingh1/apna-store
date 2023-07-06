@@ -13,9 +13,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const authRoute = require("./routes/userRoute");
+const authRouter = require("./routes/userRoute");
+const productRouter = require("./routes/productRoute");
 
-app.use("/api/user", authRoute);
+app.use("/api/user", authRouter);
+app.use("/api/product", productRouter);
 
 app.use(notFound);
 app.use(errorHandler);

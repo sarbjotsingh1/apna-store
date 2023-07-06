@@ -10,11 +10,13 @@ const {
   updateUser,
   blockUser,
   unblockUser,
-  handleRefeshToken,
+  handleRefreshToken,
+  logoutUser,
 } = require("../controller/userCtrl");
 router.post("/register", createUser);
 router.post("/login", loginUser);
-router.get("/refesh", handleRefeshToken);
+router.get("/refesh", handleRefreshToken);
+router.get("/logout", logoutUser);
 router.get("/all-users", getAllUsers);
 router.get("/:id", authMiddleware, isAdmin, getSingleUser);
 router.delete("/:id", deleteUser);

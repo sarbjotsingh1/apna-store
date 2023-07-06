@@ -23,7 +23,7 @@ const loginUser = asyncHandler(async (req, res) => {
   // check if user exists or not
   const findUser = await User.findOne({ email });
   if (findUser && (await findUser.isPasswordMatched(password))) {
-    const refreshToken = await generateRefreshToken(findUser?._id);
+    const refreshToken = await genrateRefreshToken(findUser?._id);
     const updateuser = await User.findByIdAndUpdate(
       findUser.id,
       {
@@ -41,25 +41,56 @@ const loginUser = asyncHandler(async (req, res) => {
       lastname: findUser?.lastname,
       email: findUser?.email,
       mobile: findUser?.mobile,
-      token: generateToken(findUser?._id),
+      token: genrateToken(findUser?._id),
     });
   } else {
     throw new Error("Invalid Credentials");
   }
 });
-const handleRefeshToken = asyncHandler(async (req, res) => {
+const handleRefreshToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) throw new Error("No Refresh Token in Cookies");
   const refreshToken = cookie.refreshToken;
-  const user = await User.findOne({ refreshToken });
+  const user = await User.findOne({ refreshToken: refreshToken });
   if (!user) throw new Error(" No Refresh token present in db or not matched");
   jwt.verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err || user.id !== decoded.id) {
       throw new Error("There is something wrong with refresh token");
     }
-    const accessToken = generateToken(user?._id);
+    const accessToken = genrateToken(user?._id);
     res.json({ accessToken });
   });
+});
+
+//logout
+
+const logoutUser = asyncHandler(async (req, res) => {
+  const cookie = req.cookies;
+  if (!cookie?.refreshToken) {
+    throw new Error("No Refresh Token in Cookies");
+  }
+
+  const refreshToken = cookie.refreshToken;
+  const user = await User.findOne({ refreshToken });
+
+  if (!user) {
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+    });
+    return res.sendStatus(204); // No Content
+  }
+
+  await User.findOneAndUpdate(
+    { refreshToken: refreshToken }, // Use the correct filter object
+    { refreshToken: "" }
+  );
+
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: true,
+  });
+  res.sendStatus(204); // No Content
 });
 
 // Get All Users
@@ -154,5 +185,6 @@ module.exports = {
   updateUser,
   blockUser,
   unblockUser,
-  handleRefeshToken,
+  handleRefreshToken,
+  logoutUser,
 };
