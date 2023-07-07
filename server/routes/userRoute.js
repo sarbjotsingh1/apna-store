@@ -12,8 +12,10 @@ const {
   unblockUser,
   handleRefreshToken,
   logoutUser,
+  updatePassword,
 } = require("../controller/userCtrl");
 router.post("/register", createUser);
+router.put("/password", authMiddleware, updatePassword);
 router.post("/login", loginUser);
 router.get("/refesh", handleRefreshToken);
 router.get("/logout", logoutUser);
