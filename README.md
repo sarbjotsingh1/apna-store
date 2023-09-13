@@ -1,4 +1,4 @@
-# Apna Store
+# Apna Store 🛒🌟
 
 Apna Store Logo
 
@@ -18,22 +18,21 @@ License
 
 ## Features
 
-- Product Catalog: Apna Store offers a vast catalog of products from various categories, allowing users to find exactly what they need.
+- **Product Catalog:** Apna Store offers a vast catalog of products from various categories, allowing users to find exactly what they need.
 
-- Product Comparison: Users can compare different products side by side, making informed purchasing decisions.
+- **Product Comparison:** Users can compare different products side by side, making informed purchasing decisions.
 
-- User Accounts: Registered users can create and manage their accounts, including saved addresses and payment methods.
+- **User Accounts:** Registered users can create and manage their accounts, including saved addresses and payment methods.
 
-- Shopping Cart: Add products to the cart, modify quantities, and proceed to checkout seamlessly.
+- **Shopping Cart:** Add products to the cart, modify quantities, and proceed to checkout seamlessly.
 
-- Order Management: Users can track the status of their orders and view order history.
+- **Order Management:** Users can track the status of their orders and view order history.
 
-- Admin Dashboard: The admin dashboard allows administrators to manage products, categories, users, and orders efficiently.
+- **Admin Dashboard:** The admin dashboard allows administrators to manage products, categories, users, and orders efficiently.
 
-- Product Reviews: Users can leave reviews and ratings for products, providing valuable feedback to other shoppers.
+- **Product Reviews:** Users can leave reviews and ratings for products, providing valuable feedback to other shoppers.
 
-- Search Functionality: A powerful search feature helps users find products quickly.
-
+- **Search Functionality:** A powerful search feature helps users find products quickly.
 ## Usage
 - Browse the product catalog and click on a product to view details.
 
